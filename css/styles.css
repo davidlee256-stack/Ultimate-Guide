@@ -392,9 +392,13 @@ a { color: inherit; }
 .index__part  { grid-area: part;  font-family: var(--mono); font-size: var(--fs-mono); letter-spacing: .12em; color: var(--teal); }
 .index__title { grid-area: title; font-size: var(--fs-h3); font-weight: 500; letter-spacing: -.012em; }
 .index__count { grid-area: count; font-family: var(--mono); font-size: var(--fs-mono); color: var(--on-navy-mute); }
-.index__mark  { grid-area: mark;  justify-self: end; font-family: var(--mono); color: var(--teal); line-height: 1; }
-.index__mark::after { content: '+'; }
-details[open] .index__mark::after { content: '\2212'; }
+.mark { justify-self: end; font-family: var(--mono); color: var(--teal); line-height: 1; }
+.mark::after { content: '+'; }
+details[open] .mark::after { content: '\2212'; }
+
+/* Grid placement is the index's business only. Applying it in the FAQ, whose
+   template has no "mark" area, pushed the glyph into an implicit second row. */
+.index__mark { grid-area: mark; }
 
 .index summary:hover .index__title { color: var(--teal); }
 
@@ -486,10 +490,11 @@ details[open] .index__mark::after { content: '\2212'; }
 
 /* --- 12. About ----------------------------------------------------------- */
 
+/* About is the only section with no .lead, so its heading needs the gap. */
+#about h2 { margin-bottom: var(--sp-3); }
 #about p + p { margin-top: var(--sp-3); }
 #about a { color: var(--ink); text-decoration-color: var(--teal); text-underline-offset: .2em; }
 #about a:hover { color: var(--teal); }
-#about strong { font-weight: 600; }
 
 /* --- 13. FAQ ------------------------------------------------------------- */
 
@@ -498,7 +503,7 @@ details[open] .index__mark::after { content: '\2212'; }
 .faq summary { grid-template-columns: 1fr 1.5rem; }
 .faq__q { font-size: 1.05rem; font-weight: 500; letter-spacing: -.01em; }
 .faq summary:hover .faq__q { color: var(--teal); }
-.faq .index__mark { color: var(--ink-mute); }
+.faq .mark { color: var(--ink-mute); }
 .faq__a { padding-bottom: var(--sp-3); max-width: 58ch; color: var(--ink-mute); }
 
 /* --- 14. Final CTA ------------------------------------------------------- */
