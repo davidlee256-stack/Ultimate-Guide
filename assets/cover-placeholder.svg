@@ -1,16 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 587 795" width="587" height="795" role="img" aria-label="Placeholder for the book cover">
-  <rect width="587" height="795" fill="#002957"/>
-  <rect x="26" y="26" width="535" height="743" fill="none" stroke="#35A9A7" stroke-width="1.5"/>
-  <path d="M26 566h535" stroke="#35A9A7" stroke-width="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 593 780" width="593" height="780" role="img" aria-label="Placeholder for the book cover">
+  <rect width="593" height="780" fill="#002957"/>
+  <rect x="26" y="26" width="541" height="728" fill="none" stroke="#35A9A7" stroke-width="1.5"/>
+  <path d="M26 556h541" stroke="#35A9A7" stroke-width="1.5"/>
   <g font-family="Archivo, Helvetica Neue, Arial, sans-serif" fill="#DCE6EE">
     <text x="58" y="128" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="4" fill="#35A9A7">AI FOR ARCHITECTS</text>
     <text x="58" y="262" font-size="55" font-weight="600" letter-spacing="-1.4">The Ultimate</text>
     <text x="58" y="322" font-size="55" font-weight="600" letter-spacing="-1.4">Guide for</text>
     <text x="58" y="382" font-size="55" font-weight="600" letter-spacing="-1.4">Architects</text>
     <text x="58" y="442" font-size="55" font-weight="600" letter-spacing="-1.4" fill="#33CBCC">Using AI</text>
-    <text x="58" y="622" font-family="IBM Plex Mono, monospace" font-size="17" letter-spacing="3" fill="#9FB3C4">139 PAGES</text>
-    <text x="58" y="650" font-family="IBM Plex Mono, monospace" font-size="17" letter-spacing="3" fill="#9FB3C4">10 PARTS</text>
-    <text x="58" y="678" font-family="IBM Plex Mono, monospace" font-size="17" letter-spacing="3" fill="#9FB3C4">62 CHAPTERS</text>
-    <text x="58" y="740" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="2" fill="#35A9A7">PLACEHOLDER — ADD assets/cover.jpg</text>
+    <text x="58" y="612" font-family="IBM Plex Mono, monospace" font-size="17" letter-spacing="3" fill="#9FB3C4">139 PAGES</text>
+    <text x="58" y="640" font-family="IBM Plex Mono, monospace" font-size="17" letter-spacing="3" fill="#9FB3C4">10 PARTS</text>
+    <text x="58" y="668" font-family="IBM Plex Mono, monospace" font-size="17" letter-spacing="3" fill="#9FB3C4">62 CHAPTERS</text>
+    <text x="58" y="726" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="2" fill="#35A9A7">PLACEHOLDER — ADD assets/cover.jpg</text>
   </g>
 </svg>
