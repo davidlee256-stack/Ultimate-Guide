@@ -178,7 +178,13 @@ a { color: inherit; }
 
 /* --- 5. Buttons — the only cyan on the page ------------------------------ */
 
-.btn {
+/* Qualified with the element (a.btn = 0,1,1) so our styling outranks any
+   single-class rule Payhip's buy-button stylesheet injects. Payhip appends its
+   CSS to head at runtime, which would win every specificity tie against a bare
+   .btn. Payhip's own snippet ships data-theme="green"; green is not in this
+   palette, so the CTAs carry data-theme="none" and this guard as well.
+   Every button on this page is an anchor, so nothing is lost. */
+a.btn {
   display: inline-block;
   background: var(--cyan);
   color: var(--navy);            /* navy on cyan = 7.3:1. White would be 2:1. */
@@ -192,11 +198,11 @@ a { color: inherit; }
   border-radius: 2px;
   transition: background-color .15s linear, border-color .15s linear;
 }
-.btn:hover { background: var(--teal); border-color: var(--teal); }
-.btn:active { background: var(--teal); }
+a.btn:hover { background: var(--teal); border-color: var(--teal); }
+a.btn:active { background: var(--teal); }
 
-.btn--lg { font-size: 1.15rem; padding: 1.05rem 2rem; margin-top: var(--sp-4); }
-.btn--sm { font-size: var(--fs-sm); padding: .6rem 1rem; }
+a.btn--lg { font-size: 1.15rem; padding: 1.05rem 2rem; margin-top: var(--sp-4); }
+a.btn--sm { font-size: var(--fs-sm); padding: .6rem 1rem; }
 
 /* --- 6. Masthead --------------------------------------------------------- */
 
@@ -235,10 +241,10 @@ a { color: inherit; }
 .nav a { color: var(--on-navy-mute); text-decoration: none; }
 .nav a:hover { color: var(--teal); }
 
-.masthead .btn--sm { display: none; }
+.masthead a.btn--sm { display: none; }
 
 @media (min-width: 48rem) { .nav { display: flex; } }
-@media (min-width: 60rem) { .masthead .btn--sm { display: inline-block; } }
+@media (min-width: 60rem) { .masthead a.btn--sm { display: inline-block; } }
 
 /* --- 7. Hero ------------------------------------------------------------- */
 
@@ -611,7 +617,7 @@ details[open] .mark::after { content: '\2212'; }
   line-clamp: 2;
   overflow: hidden;
 }
-.stickybar .btn--sm { flex: none; }
+.stickybar a.btn--sm { flex: none; }
 
 @media (min-width: 60rem) { .stickybar { display: none; } }
 

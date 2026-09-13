@@ -33,7 +33,7 @@
       <a href="#audience">Who it's for</a>
       <a href="#faq">Questions</a>
     </nav>
-    <a class="btn btn--sm" href="https://payhip.com/b/b2wDl" data-cta="header">Get the guide — $20</a>
+    <a class="btn btn--sm payhip-buy-button" data-theme="none" data-product="b2wDl" href="https://payhip.com/b/b2wDl" data-cta="header">Get the guide — $20</a>
   </div>
 </header>
 
@@ -54,7 +54,7 @@
           Written by the creator of <span class="nowrap">AI for Architects</span> — a channel that
           tests these tools against real architectural tasks and publishes the results.
         </p>
-        <a class="btn btn--lg" href="https://payhip.com/b/b2wDl" data-cta="hero">Get the guide — $20</a>
+        <a class="btn btn--lg payhip-buy-button" data-theme="none" data-product="b2wDl" href="https://payhip.com/b/b2wDl" data-cta="hero">Get the guide — $20</a>
         <p class="hero__reassure">PDF, instant download. Checkout runs on Payhip.</p>
       </div>
 
@@ -475,7 +475,7 @@
         <p class="band__close">
           Or read the full contents above — all ten parts, all 62 chapters, listed.
         </p>
-        <a class="btn" href="https://payhip.com/b/b2wDl" data-cta="mid">Get the guide — $20</a>
+        <a class="btn payhip-buy-button" data-theme="none" data-product="b2wDl" href="https://payhip.com/b/b2wDl" data-cta="mid">Get the guide — $20</a>
       </div>
     </div>
   </section>
@@ -600,7 +600,7 @@
       <h2>Get the guide</h2>
       <p class="final__price"><span>$20</span> USD</p>
       <p class="final__detail">139 pages · 10 parts · 62 chapters · PDF</p>
-      <a class="btn btn--lg" href="https://payhip.com/b/b2wDl" data-cta="final">Get the guide — $20</a>
+      <a class="btn btn--lg payhip-buy-button" data-theme="none" data-product="b2wDl" href="https://payhip.com/b/b2wDl" data-cta="final">Get the guide — $20</a>
       <p class="final__after">
         Payhip takes the payment and emails your download link. The file is yours to keep.
       </p>
@@ -631,10 +631,14 @@
 <div class="stickybar" id="stickybar" hidden>
   <div class="stickybar__inner">
     <p class="stickybar__label">The Ultimate Guide for Architects Using AI</p>
-    <a class="btn btn--sm" href="https://payhip.com/b/b2wDl" data-cta="sticky">Get the guide — $20</a>
+    <a class="btn btn--sm payhip-buy-button" data-theme="none" data-product="b2wDl" href="https://payhip.com/b/b2wDl" data-cta="sticky">Get the guide — $20</a>
   </div>
 </div>
 
+<!-- Payhip's buy-button script upgrades the CTAs above into an overlay checkout.
+     Every CTA is a real link to the product page first and foremost, so if this
+     script is blocked, fails, or changes, clicking still reaches checkout. -->
+<script type="text/javascript" src="https://payhip.com/payhip.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
