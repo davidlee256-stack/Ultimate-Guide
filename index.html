@@ -59,12 +59,14 @@
       </div>
 
       <figure class="hero__cover">
-        <!-- TO SWAP IN THE REAL COVER: save it as assets/cover.jpg (portrait, 2:3,
-             at least 900px wide) and change the src below to assets/cover.jpg.
-             Nothing else needs to change. -->
-        <img src="assets/cover-placeholder.svg"
-             width="600" height="900"
-             alt="Cover of The Ultimate Guide for Architects Using AI">
+        <!-- Save the cover artwork as assets/cover.jpg and this is done. Until that file
+             exists the placeholder below stands in, so the hero never shows a broken image.
+             width/height are the artwork's ratio (587:795) and reserve the box so nothing
+             shifts as it loads — if your export has a different ratio, update both numbers. -->
+        <img src="assets/cover.jpg"
+             onerror="this.onerror=null;this.src='assets/cover-placeholder.svg'"
+             width="587" height="795"
+             alt="Cover of The Ultimate Guide for Architects Using AI: an isometric drawing of a three-storey building, one half a solid model and the other a cyan wireframe threaded with data nodes.">
       </figure>
 
     </div>
@@ -511,9 +513,14 @@
           <li class="faq__row">
             <details>
               <summary><span class="faq__q">What's the refund policy?</span><span class="mark" aria-hidden="true"></span></summary>
-              <!-- CONFIRM: must match the refund terms actually set on Payhip. -->
-              <div class="faq__a"><p class="todo">[CONFIRM: copy the refund terms exactly as they
-              read on your Payhip listing.]</p></div>
+              <!-- CONFIRM: two things worth checking before launch. (1) Payhip's own seller
+                   terms may give buyers rights regardless of what this says. (2) UK and EU
+                   consumers normally hold a 14-day cancellation right on digital purchases
+                   unless they expressly waive it at checkout and acknowledge losing it. If you
+                   sell into either market, this answer may need a sentence added. -->
+              <div class="faq__a"><p>There isn't one. It's a digital file that downloads the
+              moment you pay, so sales are final. That's exactly why the contents list above
+              spells out all ten parts — read it, and buy only if it covers what you need.</p></div>
             </details>
           </li>
           <li class="faq__row">

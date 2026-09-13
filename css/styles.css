@@ -176,12 +176,6 @@ a { color: inherit; }
 .section--paper .band__close { border-top: 1px solid var(--rule-light); }
 .section--navy  .band__close { border-top: 1px solid var(--rule-dark); color: var(--on-navy-mute); }
 
-.todo {
-  font-family: var(--mono);
-  font-size: var(--fs-sm);
-  color: var(--label);
-}
-
 /* --- 5. Buttons — the only cyan on the page ------------------------------ */
 
 .btn {
