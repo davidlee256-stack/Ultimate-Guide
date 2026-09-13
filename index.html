@@ -59,12 +59,13 @@
       </div>
 
       <figure class="hero__cover">
-        <!-- Save the cover artwork as assets/cover.jpg and this is done. Until that file
-             exists the placeholder below stands in, so the hero never shows a broken image.
-             width/height are the artwork's ratio (587:795) and reserve the box so nothing
-             shifts as it loads — if your export has a different ratio, update both numbers. -->
+        <!-- Save the cover artwork into this folder as assets/cover.jpg — or cover.png, which
+             is tried next — and this is done. If neither exists the placeholder stands in, so
+             the hero never shows a broken image. width/height are the artwork's ratio (587:795)
+             and reserve the box so nothing shifts as it loads; if your export is a different
+             shape, update both numbers. -->
         <img src="assets/cover.jpg"
-             onerror="this.onerror=null;this.src='assets/cover-placeholder.svg'"
+             onerror="this.src.endsWith('.jpg') ? this.src='assets/cover.png' : (this.onerror=null, this.src='assets/cover-placeholder.svg')"
              width="587" height="795"
              alt="Cover of The Ultimate Guide for Architects Using AI: an isometric drawing of a three-storey building, one half a solid model and the other a cyan wireframe threaded with data nodes.">
       </figure>
