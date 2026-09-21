@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Open Graph share image — 1200×630</title>
+<!--
+  Not part of the site. This is the source for assets/og-image.png, the image
+  that appears when the page is shared on LinkedIn, Facebook, X, WhatsApp,
+  Slack or Discord.
+
+  To re-render after changing it: open this file in a browser at exactly
+  1200×630 and screenshot, or use any HTML-to-image tool. Save the result
+  over assets/og-image.png. Nothing else needs to change.
+-->
+<link rel="stylesheet" href="../css/fonts.css">
+<style>
+  :root {
+    --navy: #002957; --navy-deep: #022C5E; --cyan: #33CBCC; --teal: #35A9A7;
+    --on-navy: #DCE6EE; --on-navy-mute: #9FB3C4;
+    --sans: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { width: 1200px; height: 630px; overflow: hidden;
+         background: var(--navy); color: var(--on-navy); font-family: var(--sans); }
+
+  .sheet { width: 1200px; height: 630px; display: grid;
+           grid-template-rows: 1fr auto; padding: 56px 64px 0; }
+  .top { display: grid; grid-template-columns: 1fr 300px; gap: 56px; align-items: center; }
+
+  .eyebrow { font-family: var(--mono); font-size: 18px; letter-spacing: .18em;
+             text-transform: uppercase; color: var(--teal); }
+  h1 { font-size: 66px; font-weight: 600; line-height: 1.04; letter-spacing: -.028em;
+       margin-top: 22px; max-width: 19ch; }
+  .sub { margin-top: 24px; font-size: 25px; line-height: 1.4; color: var(--on-navy-mute);
+         max-width: 30ch; }
+
+  .cover { border: 1px solid rgba(53,169,167,.34); padding: 7px; }
+  .cover img { display: block; width: 100%; height: auto; }
+
+  .block { display: grid; grid-template-columns: repeat(5, 1fr);
+           border-top: 1px solid rgba(53,169,167,.34); margin: 0 -64px; }
+  .cell { padding: 20px 28px; border-right: 1px solid rgba(53,169,167,.34); }
+  .cell:first-child { padding-left: 64px; }
+  .cell:last-child { border-right: 0; padding-right: 64px; }
+  .cell dt { font-family: var(--mono); font-size: 15px; letter-spacing: .16em;
+             text-transform: uppercase; color: var(--teal); }
+  .cell dd { font-size: 27px; font-weight: 500; letter-spacing: -.015em; margin-top: 2px; }
+  .cell dd small { font-family: var(--mono); font-size: 15px; color: var(--on-navy-mute); }
+</style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="top">
+      <div>
+        <p class="eyebrow">AI for Architects</p>
+        <h1>The Ultimate Guide for Architects Using AI</h1>
+        <p class="sub">Which tools earn a place in a real workflow — and where they fall apart.</p>
+      </div>
+      <figure class="cover"><img src="cover.png" width="593" height="780" alt=""></figure>
+    </div>
+    <dl class="block">
+      <div class="cell"><dt>Format</dt><dd>PDF</dd></div>
+      <div class="cell"><dt>Pages</dt><dd>139</dd></div>
+      <div class="cell"><dt>Parts</dt><dd>10</dd></div>
+      <div class="cell"><dt>Chapters</dt><dd>62</dd></div>
+      <div class="cell"><dt>Price</dt><dd>$20 <small>USD</small></dd></div>
+    </dl>
+  </div>
+</body>
+</html>
