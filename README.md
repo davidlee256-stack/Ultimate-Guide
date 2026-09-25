@@ -40,14 +40,24 @@ assets/
 
 ---
 
-## Before you deploy: one find-and-replace
+## The domain
 
-`index.html` contains **10 instances of `YOUR-DOMAIN-HERE`**. Replace every one
-with your real address, no trailing slash, e.g. `https://aiforarchitects.com`.
+The site is set to **`https://architectsandai.com`** — no trailing slash.
 
-Open Graph and structured data require absolute URLs. Relative ones are
-ignored, so until this is done **your share image will not appear** when
-someone posts the link on LinkedIn, Facebook, WhatsApp, Slack or X.
+It appears **9 times in the page's metadata**: the canonical link, `og:url`,
+`og:image`, `twitter:image`, three times in the Book node (`@id`, `url`,
+`image`) and twice in the Product node (`@id`, `image`). Open Graph and
+structured data require absolute URLs — relative ones are ignored — so if the
+domain ever changes, all nine change together.
+
+Searching `index.html` for `architectsandai.com` returns **11** hits: those
+nine plus two mentions inside the explanatory comment above the canonical
+link.
+
+**Pick one host and redirect the other.** If `www.architectsandai.com`
+resolves as well as the bare domain, point it at the bare domain with a 301.
+Two addresses serving identical pages splits your search ranking between them,
+and only one of them matches the canonical.
 
 ---
 
@@ -154,9 +164,11 @@ Every push to that branch redeploys automatically.
 4. Wait a minute or two. The URL appears at the top of the same page, in the
    form `https://<username>.github.io/<repository>/`.
 
-GitHub Pages serves from a subfolder unless you use a custom domain. Every
-path in this site is relative, so that works — but remember your canonical and
-Open Graph URLs must include the subfolder too.
+GitHub Pages serves from a subfolder unless you attach a custom domain. Since
+the metadata points at `https://architectsandai.com`, add the domain under
+**Settings -> Pages -> Custom domain** rather than launching on the
+`github.io` subfolder URL — otherwise the canonical and Open Graph URLs will
+name an address the site is not actually served from.
 
 ---
 
@@ -179,7 +191,7 @@ Five remain. None is visible to a reader; each marks something only you can
 verify.
 
 1. **`twitter:site`** — add `<meta name="twitter:site" content="@yourhandle">`
-   if you have an X account.
+   if you have an X account. The card works without it; it only adds attribution.
 2. **Practitioner input** — if working architects reviewed or contributed to
    the manuscript, the about section says where to add that. It is the
    strongest honest credibility line available. Leave it out if untrue.
