@@ -373,6 +373,7 @@ a.btn--sm { font-size: var(--fs-sm); padding: .6rem 1rem; }
 /* --- 9. Contents index --------------------------------------------------- */
 
 .index { margin-top: var(--sp-5); border-top: 1px solid var(--rule-dark); }
+.index + a.btn { margin-top: var(--sp-5); }  /* mid-page CTA closes the contents */
 .index__row { border-bottom: 1px solid var(--rule-dark); }
 
 .index summary,
@@ -467,47 +468,7 @@ details[open] .mark::after { content: '\2212'; }
   .sched__row { grid-template-columns: minmax(0, 19rem) minmax(0, 1fr); }
 }
 
-/* --- 11. Sample spreads -------------------------------------------------- */
-
-.spreads {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--sp-4);
-  margin-top: var(--sp-5);
-}
-.spread { margin: 0; }
-.spread figcaption {
-  margin-top: var(--sp-2);
-  font-family: var(--mono);
-  font-size: var(--fs-mono);
-  color: var(--on-navy-mute);
-}
-
-.placeholder {
-  aspect-ratio: 3 / 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--sp-1);
-  background: var(--navy-deep);
-  border: 1px dashed var(--teal);
-  color: var(--on-navy-mute);
-  font-family: var(--mono);
-  font-size: var(--fs-sm);
-  text-align: center;
-  padding: var(--sp-3);
-}
-.placeholder__tag {
-  font-size: var(--fs-mono);
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--teal);
-}
-
-@media (min-width: 48rem) { .spreads { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-
-/* --- 12. About ----------------------------------------------------------- */
+/* --- 11. About ----------------------------------------------------------- */
 
 /* About is the only section with no .lead, so its heading needs the gap. */
 #about h2 { margin-bottom: var(--sp-3); }
@@ -515,7 +476,7 @@ details[open] .mark::after { content: '\2212'; }
 #about a { color: var(--ink); text-decoration-color: var(--teal); text-underline-offset: .2em; }
 #about a:hover { color: var(--teal); }
 
-/* --- 13. FAQ ------------------------------------------------------------- */
+/* --- 12. FAQ ------------------------------------------------------------- */
 
 .faq { margin-top: var(--sp-4); border-top: 1px solid var(--rule-light); }
 .faq__row { border-bottom: 1px solid var(--rule-light); }
@@ -525,7 +486,7 @@ details[open] .mark::after { content: '\2212'; }
 .faq .mark { color: var(--ink-mute); }
 .faq__a { padding-bottom: var(--sp-3); max-width: 58ch; color: var(--ink-mute); }
 
-/* --- 14. Final CTA ------------------------------------------------------- */
+/* --- 13. Final CTA ------------------------------------------------------- */
 
 .final { text-align: center; }
 .final__inner { max-width: 42rem; }
@@ -560,7 +521,7 @@ details[open] .mark::after { content: '\2212'; }
   color: var(--on-navy-mute);
 }
 
-/* --- 15. Footer ---------------------------------------------------------- */
+/* --- 14. Footer ---------------------------------------------------------- */
 
 .footer {
   background: var(--navy);
@@ -585,7 +546,7 @@ details[open] .mark::after { content: '\2212'; }
   .footer__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: var(--sp-6); }
 }
 
-/* --- 16. Mobile sticky buy bar ------------------------------------------- */
+/* --- 15. Mobile sticky buy bar ------------------------------------------- */
 
 .stickybar {
   position: fixed;
@@ -626,7 +587,7 @@ details[open] .mark::after { content: '\2212'; }
 
 @media (min-width: 60rem) { .stickybar { display: none; } }
 
-/* --- 17. Motion ---------------------------------------------------------- */
+/* --- 16. Motion ---------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
