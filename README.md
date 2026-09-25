@@ -174,17 +174,6 @@ name an address the site is not actually served from.
 
 ## Outstanding items
 
-### Visible on the page
-
-**Sample spreads** — the "Look inside" section shows two marked placeholder
-frames. To fill them, save two page exports as `assets/sample-1.jpg` and
-`assets/sample-2.jpg` (landscape spreads work best), delete the two
-`<div class="placeholder">` blocks, and uncomment the `<img>` line beneath
-each. Both already carry correct `width`, `height` and `loading="lazy"`.
-
-Worth considering: now that all 62 chapter titles are listed on the page, this
-section does less work than it did. Cutting it is a reasonable option.
-
 ### Marked in the source with `CONFIRM` comments
 
 Five remain. None is visible to a reader; each marks something only you can
