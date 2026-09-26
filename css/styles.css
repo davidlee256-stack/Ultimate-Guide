@@ -204,6 +204,17 @@ a.btn:active { background: var(--teal); }
 a.btn--lg { font-size: 1.15rem; padding: 1.05rem 2rem; margin-top: var(--sp-4); }
 a.btn--sm { font-size: var(--fs-sm); padding: .6rem 1rem; }
 
+/* Secondary: the free-prompts button. Outline only and teal, never cyan, so
+   the buy buttons stay the loudest thing on the page. */
+a.btn--ghost {
+  background: transparent;
+  color: var(--on-navy);
+  border-color: var(--teal);
+  font-weight: 500;
+}
+a.btn--ghost:hover,
+a.btn--ghost:active { background: rgba(53, 169, 167, .16); border-color: var(--teal); }
+
 /* --- 6. Masthead --------------------------------------------------------- */
 
 .masthead {
@@ -293,6 +304,8 @@ a.btn--sm { font-size: var(--fs-sm); padding: .6rem 1rem; }
   font-size: var(--fs-mono);
   color: var(--on-navy-mute);
 }
+
+a.hero__prompts { margin-top: var(--sp-4); }
 
 .hero__cover {
   margin: 0;
@@ -626,7 +639,148 @@ details[open] .mark::after { content: '\2212'; }
 
 @media (min-width: 60rem) { .stickybar { display: none; } }
 
-/* --- 17. Motion ---------------------------------------------------------- */
+/* --- 17. Free prompts dialog --------------------------------------------- */
+
+/* A paper sheet over the page. The dialog itself carries no padding, so a
+   click whose target is the dialog element landed on the backdrop. */
+.prompts {
+  width: min(52rem, 100% - 2 * var(--gutter));
+  max-width: none;
+  max-height: calc(100dvh - 3rem);
+  padding: 0;
+  border: 1px solid var(--teal);
+  border-radius: 2px;
+  background: var(--paper);
+  color: var(--ink);
+  --label: var(--navy);
+}
+.prompts::backdrop { background: rgba(0, 16, 36, .8); }
+html:has(.prompts[open]) { overflow: hidden; }
+
+.prompts__head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--navy);
+  color: var(--on-navy);
+  border-bottom: 1px solid var(--teal);
+}
+.prompts__eyebrow {
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+.prompts__title { margin-top: .2rem; font-size: 1.5rem; }
+
+/* Element-qualified for the same reason as a.btn: Payhip injects CSS late. */
+button.prompts__close,
+button.prompt__copy {
+  flex: none;
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  padding: .55rem .9rem;
+  cursor: pointer;
+  transition: background-color .15s linear, color .15s linear;
+}
+button.prompts__close {
+  background: transparent;
+  color: var(--on-navy);
+  border: 1px solid var(--rule-dark);
+}
+button.prompts__close:hover { border-color: var(--teal); color: var(--teal); }
+
+.prompts__body { padding: var(--sp-4); }
+.prompts__intro { max-width: var(--measure); color: var(--ink-mute); }
+
+.prompt {
+  margin-top: var(--sp-5);
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--rule-light);
+}
+.prompt__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-3);
+}
+.prompt__num {
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--label);
+}
+.prompt__title { margin-top: .3rem; font-size: 1.3rem; }
+.prompt__what { margin-top: var(--sp-2); max-width: var(--measure); color: var(--ink-mute); font-size: var(--fs-sm); }
+
+button.prompt__copy {
+  background: var(--navy);
+  color: var(--on-navy);
+  border: 1px solid var(--navy);
+}
+button.prompt__copy:hover { background: var(--navy-deep); }
+button.prompt__copy.is-copied { background: transparent; color: var(--navy); }
+
+/* Wrapped rather than scrolled sideways, so it reads on a phone. Wrapping is
+   display only: the clipboard gets the text with its original line breaks. */
+.prompt__text {
+  margin: var(--sp-3) 0 0;
+  padding: var(--sp-3);
+  background: rgba(0, 41, 87, .05);
+  border-left: 2px solid var(--teal);
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  tab-size: 2;
+}
+
+.prompts__rule {
+  margin-top: var(--sp-5);
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--rule-light);
+  max-width: var(--measure);
+  color: var(--ink-mute);
+}
+.prompts__rule strong { color: var(--ink); font-weight: 600; }
+
+.prompts__status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Phones: the sheet takes the whole screen. */
+@media (max-width: 40rem) {
+  .prompts {
+    width: 100%;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    border: 0;
+  }
+  .prompts__head { padding: var(--sp-2) var(--gutter); padding-top: max(var(--sp-2), env(safe-area-inset-top)); }
+  .prompts__body { padding: var(--sp-3) var(--gutter) max(var(--sp-5), env(safe-area-inset-bottom)); }
+  .prompts__title { font-size: 1.2rem; }
+}
+
+/* --- 18. Motion ---------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
