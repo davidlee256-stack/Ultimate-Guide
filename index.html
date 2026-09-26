@@ -124,6 +124,7 @@
       <a href="#contents">Contents</a>
       <a href="#audience">Who it's for</a>
       <a href="#faq">Questions</a>
+      <a href="#prompts" data-prompts-open>Free prompts</a>
     </nav>
     <a class="btn btn--sm payhip-buy-button" data-theme="none" data-product="b2wDl" href="https://payhip.com/b/b2wDl" data-cta="header">Get the 139-page guide — $20</a>
   </div>
@@ -148,6 +149,7 @@
         </p>
         <a class="btn btn--lg payhip-buy-button" data-theme="none" data-product="b2wDl" href="https://payhip.com/b/b2wDl" data-cta="hero">Get the 139-page guide — $20</a>
         <p class="hero__reassure">PDF, instant download. Checkout runs on Payhip.</p>
+        <a class="btn btn--sm btn--ghost hero__prompts" href="#prompts" data-prompts-open>Free: the 3 saved prompts from the video</a>
       </div>
 
       <figure class="hero__cover">
@@ -716,6 +718,226 @@
     </div>
   </div>
 </footer>
+
+<!-- ============================================================
+     FREE PROMPTS — the three saved prompts from the video.
+     Opened by any link to #prompts (hero button, nav link), and directly
+     by visiting the site's address with #prompts on the end, so that
+     address can go in a video description. The prompt text inside each <pre> is
+     exactly what the copy button puts on the clipboard.
+     ============================================================ -->
+<dialog class="prompts" id="prompts" aria-labelledby="prompts-title">
+  <div class="prompts__inner">
+    <div class="prompts__head">
+      <div>
+        <p class="prompts__eyebrow">Free · From the video</p>
+        <h2 class="prompts__title" id="prompts-title">The 3 saved prompts</h2>
+      </div>
+      <button class="prompts__close" type="button" data-prompts-close aria-label="Close the prompts">Close</button>
+    </div>
+
+    <div class="prompts__body">
+      <p class="prompts__intro">
+        The full pipeline from the video. Build the setup once — Custom Instructions, one
+        Project per job, these three prompts — and stop re-typing your instructions on every
+        project. Each one assumes you're working inside a ChatGPT Project with your own files
+        uploaded: the brief, your code and zoning documents, your drawings. That's what turns
+        the model from something that remembers into something that reads.
+      </p>
+
+      <section class="prompt" aria-labelledby="prompt-1-title">
+        <div class="prompt__head">
+          <div>
+            <p class="prompt__num">Prompt 01</p>
+            <h3 class="prompt__title" id="prompt-1-title">The Brief</h3>
+          </div>
+          <button class="prompt__copy" type="button" data-copy="prompt-1-text">Copy prompt</button>
+        </div>
+        <p class="prompt__what">Turns raw call notes into a structured brief you can design against — with every line marked stated, implied or missing, so you can hand it straight back to the client for confirmation.</p>
+<pre class="prompt__text" id="prompt-1-text">SOURCE
+Use only my raw notes and the files in this Project. Do not add
+requirements, preferences, standards or budget figures that
+aren't in them. Do not fill gaps with what's typical for this
+project type.
+
+TASK
+Turn my raw notes into a structured architectural brief I can
+design against and send back to the client for confirmation.
+
+STRUCTURE
+- Project summary, three sentences
+- Client goals: what they want, and where stated, why
+- The people: who lives or works here, how many, how they use
+  the space
+- Site: address, orientation, access, slope, existing structures,
+  neighbours, anything they mentioned about the setting
+- Program: every space named, with any size, quality or
+  adjacency note attached to it
+- Constraints: planning, zoning, heritage, access, services,
+  timeline
+- Budget signals: figures given, and any indirect signal
+  (finishes named, comparisons made, phrases like "nothing fancy")
+- Priorities: what they'd protect if the budget tightened, and
+  what they'd drop
+- Timeline and any fixed dates
+
+TRACEABILITY
+Against every line, mark one of:
+STATED - quote the words from my notes
+IMPLIED - my notes point to it, say which line and how
+MISSING - not in the notes at all
+Never write a line without one of these marks. If a section is
+entirely MISSING, say so rather than producing a plausible one.
+
+QUESTIONS
+Then a numbered list of every question I still need answered,
+ordered by what blocks design work soonest. For each, say in one
+line what it changes if the answer goes either way.
+
+CONTRADICTIONS
+List anywhere my notes conflict with each other, or where a
+stated goal doesn't fit a stated constraint or budget signal.
+Quote both sides. Don't resolve it.
+
+OUTPUT
+The brief, then the questions, then the contradictions. No
+preamble, no summary of what you did.</pre>
+      </section>
+
+      <section class="prompt" aria-labelledby="prompt-2-title">
+        <div class="prompt__head">
+          <div>
+            <p class="prompt__num">Prompt 02</p>
+            <h3 class="prompt__title" id="prompt-2-title">The Code &amp; Zoning Checklist</h3>
+          </div>
+          <button class="prompt__copy" type="button" data-copy="prompt-2-text">Copy prompt</button>
+        </div>
+        <p class="prompt__what">Only works once your jurisdiction’s documents are uploaded to the Project. Every line comes back with a section number and a word-for-word quote, or it comes back marked “not in sources.”</p>
+<pre class="prompt__text" id="prompt-2-text">JURISDICTION
+City / county: [    ]        State: [    ]
+Building code adopted: [    ] edition, with [state] amendments,
+effective [date]
+Residential code, if separate: [    ]
+Fire code: [    ]   Energy code: [    ]   Accessibility: [    ]
+Zoning ordinance: [    ], last amended [date]
+Zoning district: [    ]   Overlays: [    ]
+Use group / occupancy: [    ]   Construction type: [    ]
+Storeys: [    ]   Sprinklered: [yes / no]
+Anything blank above: don't assume it and don't use a national
+default. Add it to the missing documents list and stop.
+
+SOURCES
+Use only the documents uploaded to this Project. Do not use
+general knowledge of building codes, and do not rely on anything
+you remember about this jurisdiction.
+Before the checklist, list every document you'd need but don't
+have, and name it specifically enough that I can go find it.
+
+PRECEDENCE
+Where documents overlap, the more local one governs: local
+amendment over state amendment, state amendment over model code.
+Where a local amendment changes a model code figure, show both,
+say which governs, and cite both sections.
+Where the zoning ordinance and the building code both touch an
+item, such as height, treat them as separate requirements and
+list both.
+
+SCOPE
+Egress and travel distance, stair and guard geometry, corridor
+and door widths, room sizes, ceiling heights, light and
+ventilation, fire separation and ratings, structural and energy
+where the documents cover it, setbacks, height, lot coverage and
+FAR, parking and loading, and accessibility.
+
+FOR EACH ITEM
+- The requirement, in plain language
+- The governing number or threshold
+- Document name, section number, and page
+- A word for word quote of the sentence that number comes from
+- Status: VERIFIED, quoted from an uploaded document
+           NOT IN SOURCES, needs verification
+           CONFLICT, two documents disagree, show both and cite both
+- Whether it's a hard limit or subject to a listed exception, and
+  quote the exception
+- How this project stands against it, if the brief or drawings in
+  this Project give me the figure. Otherwise mark it as unchecked.
+
+RULES
+Never cite a section you can't quote. If the section number and
+the quote don't match, output NOT IN SOURCES instead.
+Never paraphrase a number into the quote field.
+Don't mark anything verified on the strength of a table alone
+without naming the table and its conditions.
+
+OUTPUT
+Missing documents first. Then the checklist, grouped by building
+code and zoning. Then a short list of every item where a local
+amendment changed the model code figure, because those are the
+ones I'm most likely to get wrong from memory.</pre>
+      </section>
+
+      <section class="prompt" aria-labelledby="prompt-3-title">
+        <div class="prompt__head">
+          <div>
+            <p class="prompt__num">Prompt 03</p>
+            <h3 class="prompt__title" id="prompt-3-title">The 2D to 3D Model Handoff</h3>
+          </div>
+          <button class="prompt__copy" type="button" data-copy="prompt-3-text">Copy prompt</button>
+        </div>
+        <p class="prompt__what">Fill the geometry block once per project. Anything left blank gets added to the missing list instead of being guessed — and the dimension report tells you exactly which numbers to check.</p>
+<pre class="prompt__text" id="prompt-3-text">SOURCE
+Use only the floor plan, elevations and program in this Project.
+Do not invent dimensions, rooms, levels or openings that aren't
+on the drawings.
+
+BEFORE YOU MODEL
+List everything missing that would change the geometry: floor to
+floor height, wall and partition thicknesses, slab thickness,
+door and window head and sill heights, roof form and pitch, level
+changes, north orientation, and drawing scale. Ask for those. Do
+not pick values to fill the gaps.
+
+GEOMETRY
+Units: [mm / m / ft-in]. Work in this unit throughout.
+Floor to ceiling height: [    ]
+Floor to floor height: [    ]
+Exterior wall thickness: [    ]
+Interior partition thickness: [    ]
+Slab / floor thickness: [    ]
+Door head height: [    ]
+Window head height: [    ]   Window sill height: [    ]
+Roof: [flat / pitched at    / not modelled]
+Number of levels: [    ]
+Anything left blank: do not assume a value and do not use a
+regional default. Add it to the missing list and stop.
+Take every other dimension from the drawings, not from typical
+construction. Where a drawing gives a figured dimension, that
+figure wins over anything scaled.
+
+OUTPUT
+An editable SketchUp model. Every element a named component or
+group, tagged by material, organised so I can lock the shell
+independently of the interior.
+Named scenes for each elevation, plus plan and one isometric.
+
+VERIFY
+Return a dimension report with the overall footprint, each room's
+clear dimensions and area, and every thickness used. Mark every
+value you inferred rather than read off the drawing.
+Where the plan and the elevations disagree, list the conflict.
+Don't resolve it silently.</pre>
+      </section>
+
+      <p class="prompts__rule">
+        <strong>The rule that holds all three together.</strong> Every stage produces a draft,
+        not a deliverable. Verify every code citation against the published document, overlay
+        every model against your real site dimensions, and read every client-facing word before
+        your name goes on it. The AI doesn't stamp drawings. You do.
+      </p>
+      <p class="prompts__status" id="prompts-status" aria-live="polite"></p>
+    </div>
+  </div>
+</dialog>
 
 <!-- Mobile-only sticky buy bar; revealed once the hero scrolls away. -->
 <div class="stickybar" id="stickybar" hidden>

@@ -21,9 +21,9 @@ css/
                               properties at the top, under ":root".
 
 js/
-  main.js                     42 lines. Footer year, and the mobile buy bar
-                              that appears after the hero and stands down at
-                              the final call to action.
+  main.js                     Footer year, the mobile buy bar that appears
+                              after the hero and stands down at the final
+                              call to action, and the free-prompts dialog.
 
 assets/
   cover.png                   Book cover, 593x780, shown in the hero.
@@ -101,6 +101,25 @@ overlay script keys on. If you change the product, change both the URL and the
 
 All five buttons read `Get the 139-page guide — $20`. Keep them identical; the
 page is built on the assumption that every button says and does the same thing.
+
+### The free prompts
+
+The three saved prompts from the video (the Brief, the Code & Zoning
+Checklist, the 2D to 3D Model Handoff) live in a `<dialog id="prompts">` near
+the bottom of `index.html`. Two things open it: the outlined button under the
+hero's buy button, and the **Free prompts** link in the header nav. Each
+prompt has a **Copy prompt** button.
+
+To edit a prompt, change the text inside its `<pre class="prompt__text">`.
+What's in that element is exactly what gets copied, line breaks included.
+Avoid typing a bare `<` or `&` in it; write `&lt;` and `&amp;` instead.
+
+**Linking straight to the prompts:** add `#prompts` to the site address —
+`https://architectsandai.com/#prompts` — and the page opens with the prompts
+already showing. That's the link to put in a video description.
+
+The prompts button is deliberately teal and outlined, not cyan: it sits right
+under the buy button and shouldn't compete with it.
 
 ### Colours and type
 
