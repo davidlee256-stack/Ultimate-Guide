@@ -89,11 +89,11 @@ A quick way to catch a miss: search `index.html` for `$20` and confirm you get
 
 ### The Payhip link
 
-`https://payhip.com/b/b2wDl` appears **7 times in `index.html`**: once in each
+`https://payhip.com/b/8gr7H` appears **7 times in `index.html`**: once in each
 of the five buy buttons, and twice more in the structured data (the Book and
 Product `offers`).
 
-The five buttons also carry `data-product="b2wDl"`, which is what Payhip's
+The five buttons also carry `data-product="8gr7H"`, which is what Payhip's
 overlay script keys on. If you change the product, change both the URL and the
 `data-product` value — the ID is the part after `/b/` in the URL.
 
