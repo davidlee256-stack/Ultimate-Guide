@@ -246,6 +246,6 @@ purchase path, but the overlay would need looking at.
 - No third-party scripts other than Payhip's checkout. The analytics and pixel
   slots in `<head>` are empty and clearly marked.
 - No claim, anywhere, that the author is an architect or has architectural
-  training. The framing throughout is the creator of the AI for Architects
+  training. The framing throughout is the creator of the Architects and AI
   channel, who tests these tools and reports what happens. Keep any copy you
   add consistent with that.
