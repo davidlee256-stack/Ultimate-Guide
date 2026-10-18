@@ -128,7 +128,9 @@
 
 /* --- Videos --------------------------------------------------------------- */
 /* Each video is a plain link to YouTube. A click swaps it for the embedded
-   player, so the page loads no YouTube code until someone asks for a video. */
+   player, so the page loads no YouTube code until someone asks for a video.
+   No autoplay: the visitor presses YouTube's own play button, because
+   YouTube doesn't count autoplayed embeds as views. */
 (function () {
   'use strict';
 
@@ -144,9 +146,9 @@
 
       var iframe = document.createElement('iframe');
       iframe.src = 'https://www.youtube-nocookie.com/embed/' +
-        encodeURIComponent(link.getAttribute('data-video')) + '?autoplay=1&rel=0';
+        encodeURIComponent(link.getAttribute('data-video')) + '?rel=0';
       iframe.title = title ? title.textContent : 'YouTube video';
-      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allow = 'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
       iframe.allowFullscreen = true;
       iframe.referrerPolicy = 'strict-origin-when-cross-origin';
 
