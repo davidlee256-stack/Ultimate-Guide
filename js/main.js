@@ -1,6 +1,7 @@
 /* The Ultimate Guide for Architects Using AI — page behaviour.
    The footer year, the mobile buy bar (kept out of the way of the two CTAs
-   it would otherwise duplicate), and the free-prompts dialog. */
+   it would otherwise duplicate), the free-prompts dialog, and the
+   click-to-play videos. */
 
 (function () {
   'use strict';
@@ -121,6 +122,37 @@
           btn.classList.remove('is-copied');
         }, 2000);
       });
+    });
+  });
+})();
+
+/* --- Videos --------------------------------------------------------------- */
+/* Each video is a plain link to YouTube. A click swaps it for the embedded
+   player, so the page loads no YouTube code until someone asks for a video. */
+(function () {
+  'use strict';
+
+  document.querySelectorAll('[data-video]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      // Leave new-tab and new-window clicks to the browser.
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+
+      var title = link.closest('.video').querySelector('.video__title');
+      var player = document.createElement('div');
+      player.className = 'video__player';
+
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' +
+        encodeURIComponent(link.getAttribute('data-video')) + '?autoplay=1&rel=0';
+      iframe.title = title ? title.textContent : 'YouTube video';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+
+      player.appendChild(iframe);
+      link.replaceWith(player);
+      iframe.focus();
     });
   });
 })();

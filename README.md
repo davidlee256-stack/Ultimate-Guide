@@ -121,6 +121,26 @@ already showing. That's the link to put in a video description.
 The prompts button is deliberately teal and outlined, not cyan: it sits right
 under the buy button and shouldn't compete with it.
 
+### The videos
+
+Section 06 lists every long-form video on the channel, newest first, as
+`<li class="video">` items inside `<ul class="videos">` in `index.html`.
+Shorts are left out.
+
+To add a new video, copy the first `<li class="video">` and paste it above
+the others. Then change:
+
+- the 11-character video ID (the part after `watch?v=` in the YouTube
+  address). It appears three times: in `href`, in `data-video` and in the
+  thumbnail `src`;
+- the title, in both `aria-label="Play: ..."` and the `<h3>`;
+- the running time in `<p class="video__meta">`.
+
+Each card is an ordinary link to YouTube. When it's clicked, `js/main.js`
+swaps in the player from `youtube-nocookie.com` (YouTube's privacy-enhanced
+mode), so the page loads nothing from YouTube except the thumbnail images
+until a visitor actually plays something.
+
 ### Colours and type
 
 Top of `css/styles.css`, under `:root`. The four brand hexes, three neutrals
@@ -245,6 +265,8 @@ purchase path, but the overlay would need looking at.
 - No claims about earnings, time saved or results.
 - No third-party scripts other than Payhip's checkout. The analytics and pixel
   slots in `<head>` are empty and clearly marked.
+  The YouTube player is the one exception, and it loads only after a visitor
+  clicks a video.
 - No claim, anywhere, that the author is an architect or has architectural
   training. The framing throughout is the creator of the Architects and AI
   channel, who tests these tools and reports what happens. Keep any copy you

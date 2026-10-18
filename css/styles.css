@@ -528,7 +528,77 @@ details[open] .mark::after { content: '\2212'; }
 #about a { color: var(--ink); text-decoration-color: var(--teal); text-underline-offset: .2em; }
 #about a:hover { color: var(--teal); }
 
-/* --- 13. FAQ ------------------------------------------------------------- */
+/* --- 13. Videos ---------------------------------------------------------- */
+
+.videos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-5) var(--sp-4);
+  margin-top: var(--sp-5);
+}
+.video { min-width: 0; }
+
+/* A 16:9 frame for the thumbnail, then for the player that replaces it.
+   YouTube's hqdefault thumbnail is 4:3 with letterbox bars; cover crops them. */
+.video__thumb,
+.video__player {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  background: var(--navy-deep);
+  border: 1px solid var(--rule-dark);
+  overflow: hidden;
+}
+.video__thumb img { width: 100%; height: 100%; object-fit: cover; }
+.video__player iframe { display: block; width: 100%; height: 100%; border: 0; }
+
+/* Play mark: a square, not a disc, to keep to the 2px radius rule. */
+.video__thumb::before,
+.video__thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+}
+.video__thumb::before {
+  width: 3.25rem;
+  height: 3.25rem;
+  background: rgba(0, 41, 87, .85);
+  border: 1px solid var(--teal);
+  border-radius: 2px;
+  transition: background-color .15s linear;
+}
+.video__thumb::after {
+  width: .9rem;
+  height: 1.05rem;
+  background: var(--on-navy);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  transform: translateX(.12rem);
+}
+.video__thumb:hover::before { background: var(--teal); }
+.video__thumb:hover::after  { background: var(--navy); }
+
+.video__title {
+  margin-top: var(--sp-2);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  line-height: 1.3;
+}
+.video__meta {
+  margin-top: var(--sp-1);
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  color: var(--on-navy-mute);
+}
+
+#videos .band__close a { color: var(--on-navy); text-decoration-color: var(--teal); text-underline-offset: .2em; }
+#videos .band__close a:hover { color: var(--teal); }
+
+@media (min-width: 40rem) { .videos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 64rem) { .videos { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* --- 14. FAQ ------------------------------------------------------------- */
 
 .faq { margin-top: var(--sp-4); border-top: 1px solid var(--rule-light); }
 .faq__row { border-bottom: 1px solid var(--rule-light); }
@@ -538,7 +608,7 @@ details[open] .mark::after { content: '\2212'; }
 .faq .mark { color: var(--ink-mute); }
 .faq__a { padding-bottom: var(--sp-3); max-width: 58ch; color: var(--ink-mute); }
 
-/* --- 14. Final CTA ------------------------------------------------------- */
+/* --- 15. Final CTA ------------------------------------------------------- */
 
 .final { text-align: center; }
 .final__inner { max-width: 42rem; }
@@ -573,7 +643,7 @@ details[open] .mark::after { content: '\2212'; }
   color: var(--on-navy-mute);
 }
 
-/* --- 15. Footer ---------------------------------------------------------- */
+/* --- 16. Footer ---------------------------------------------------------- */
 
 .footer {
   background: var(--navy);
@@ -598,7 +668,7 @@ details[open] .mark::after { content: '\2212'; }
   .footer__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: var(--sp-6); }
 }
 
-/* --- 16. Mobile sticky buy bar ------------------------------------------- */
+/* --- 17. Mobile sticky buy bar ------------------------------------------- */
 
 .stickybar {
   position: fixed;
@@ -639,7 +709,7 @@ details[open] .mark::after { content: '\2212'; }
 
 @media (min-width: 60rem) { .stickybar { display: none; } }
 
-/* --- 17. Free prompts dialog --------------------------------------------- */
+/* --- 18. Free prompts dialog --------------------------------------------- */
 
 /* A paper sheet over the page. The dialog itself carries no padding, so a
    click whose target is the dialog element landed on the backdrop. */
@@ -780,7 +850,7 @@ button.prompt__copy.is-copied { background: transparent; color: var(--navy); }
   .prompts__title { font-size: 1.2rem; }
 }
 
-/* --- 18. Motion ---------------------------------------------------------- */
+/* --- 19. Motion ---------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
