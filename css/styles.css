@@ -488,6 +488,11 @@ details[open] .mark::after { content: '\2212'; }
 #about a { color: var(--ink); text-decoration-color: var(--teal); text-underline-offset: .2em; }
 #about a:hover { color: var(--teal); }
 
+/* Free BIM workflow: same rhythm as #about; ghost button needs navy text on paper. */
+#bim h2 { margin-bottom: var(--sp-3); }
+#bim p + p { margin-top: var(--sp-3); }
+#bim a.btn--ghost { color: var(--navy); margin-top: var(--sp-2); }
+
 /* --- 13. Videos ---------------------------------------------------------- */
 
 .videos {

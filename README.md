@@ -30,7 +30,8 @@ cantilever-house/
                               the six prompts from "I Tried to Replace Revit
                               with AI". Lives at /cantilever-house/. Uses the
                               shared fonts.css and favicons; its own styles are
-                              inline. Not linked from the main page.
+                              inline. Linked from section 06,
+                              "Free BIM Workflow", on the main page.
 
 assets/
   cover.png                   Book cover, 593x780, shown in the hero.
