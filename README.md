@@ -25,6 +25,13 @@ js/
                               after the hero and stands down at the final
                               call to action, and the free-prompts dialog.
 
+cantilever-house/
+  index.html                  Stand-alone page: the Cantilever House brief and
+                              the six prompts from "I Tried to Replace Revit
+                              with AI". Lives at /cantilever-house/. Uses the
+                              shared fonts.css and favicons; its own styles are
+                              inline. Not linked from the main page.
+
 assets/
   cover.png                   Book cover, 593x780, shown in the hero.
   cover-placeholder.svg       Stand-in if cover.png ever goes missing, so the
