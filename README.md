@@ -33,6 +33,14 @@ cantilever-house/
                               inline. Linked from section 06,
                               "Free BIM Workflow", on the main page.
 
+cantilever-house-constructcraft-bonsai/
+  index.html                  Stand-alone page: "Cantilever House Prompts:
+                              ConstructCraft + Bonsai". The test brief and the
+                              Claude Code prompts for both tools. Lives at
+                              /cantilever-house-constructcraft-bonsai/. Same
+                              setup as cantilever-house/ (shared fonts.css and
+                              favicons, inline styles). Linked from section 06.
+
 assets/
   cover.png                   Book cover, 593x780, shown in the hero.
   cover-placeholder.svg       Stand-in if cover.png ever goes missing, so the

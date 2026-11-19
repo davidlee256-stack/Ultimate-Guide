@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cantilever House Prompts: ConstructCraft + Bonsai | Architects and AI</title>
+<meta name="description" content="The full test brief and every Claude Code prompt used to build the Cantilever House in two free Revit alternatives: ConstructCraft and Bonsai for Blender.">
+<link rel="canonical" href="https://architectsandai.com/cantilever-house-constructcraft-bonsai/">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Architects and AI">
+<meta property="og:url" content="https://architectsandai.com/cantilever-house-constructcraft-bonsai/">
+<meta property="og:title" content="Cantilever House Prompts: ConstructCraft + Bonsai">
+<meta property="og:description" content="The full test brief and every Claude Code prompt used to build the Cantilever House in two free Revit alternatives: ConstructCraft and Bonsai for Blender.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cantilever House Prompts: ConstructCraft + Bonsai">
+<meta name="twitter:description" content="The full test brief and every Claude Code prompt used to build the Cantilever House in ConstructCraft and Bonsai for Blender.">
+
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#002957">
+
+<!-- Same self-hosted fonts as the main page, so nothing loads from Google. -->
+<link rel="stylesheet" href="../css/fonts.css">
+<style>
+  :root {
+    --navy: #002957;
+    --navy-deep: #022C5E;
+    --cyan: #33CBCC;
+    --teal: #35A9A7;
+    --page: #F3F7FA;
+    --surface: #FFFFFF;
+    --ink: #0B2545;
+    --ink-soft: #4A6076;
+    --rule: #D3DEE8;
+    --link: #1F7F7D;
+    --code-bg: #001C3D;
+    --code-ink: #E6F1F7;
+    --code-rule: #1B4A7A;
+    --gold: #B07D12;
+    --gold-bg: #FFF6DF;
+    --sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --page: #011A38;
+      --surface: #022C5E;
+      --ink: #EAF2F8;
+      --ink-soft: #A9BED0;
+      --rule: #1B4A7A;
+      --link: #33CBCC;
+      --code-bg: #00122A;
+      --gold: #FFC857;
+      --gold-bg: rgba(255, 200, 87, 0.08);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  a { color: var(--link); text-underline-offset: 0.18em; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    background: var(--navy);
+    background-image:
+      linear-gradient(rgba(51,203,204,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(51,203,204,0.07) 1px, transparent 1px);
+    background-size: 40px 40px;
+    color: #FFFFFF;
+    border-top: 6px solid var(--cyan);
+  }
+  .hero-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: 2.5rem;
+    align-items: center;
+  }
+  .brand { font-weight: 700; color: #FFFFFF; text-decoration: none; letter-spacing: 0.01em; }
+  .brand span { color: var(--cyan); }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.04;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 2.2rem 0 1rem;
+  }
+  .hero p { color: #C9DCEA; max-width: 34em; margin: 0 0 1.5rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 1.75rem; padding: 0; list-style: none; }
+  .chips li {
+    margin: 0;
+    border: 1px solid rgba(51,203,204,0.35);
+    background: rgba(51,203,204,0.10);
+    border-radius: 999px;
+    padding: 0.25rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  .hero .jump { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .btn {
+    display: inline-block;
+    padding: 0.7rem 1.1rem;
+    border-radius: 6px;
+    font-weight: 700;
+    text-decoration: none;
+    border: 2px solid var(--cyan);
+  }
+  .btn-solid { background: var(--cyan); color: var(--navy); }
+  .btn-line { color: #FFFFFF; }
+  .plan { margin: 0; }
+  .plan svg { width: 100%; height: auto; display: block; }
+  .plan svg text { font-family: var(--mono); }
+  .plan figcaption { color: #9DB7CF; font-size: 0.85rem; margin-top: 0.6rem; }
+
+  /* ---------- on-this-page bar ---------- */
+  nav.toc {
+    position: sticky; top: 0; z-index: 5;
+    background: var(--navy-deep);
+    border-bottom: 1px solid var(--code-rule);
+  }
+  nav.toc ul {
+    max-width: 800px; margin: 0 auto; padding: 0.8rem 1.5rem;
+    display: flex; gap: 1.4rem; list-style: none;
+    overflow-x: auto; white-space: nowrap; scrollbar-width: none;
+  }
+  nav.toc ul::-webkit-scrollbar { display: none; }
+  nav.toc li { margin: 0; }
+  nav.toc a { color: #C9DCEA; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+  nav.toc a:hover { color: var(--cyan); }
+
+  /* ---------- body ---------- */
+  main { max-width: 800px; margin: 0 auto; padding: 1rem 1.5rem 4rem; }
+  section[id] { scroll-margin-top: 3.5rem; }
+  .kicker {
+    font-family: var(--mono);
+    color: var(--link);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.82rem;
+    margin: 3.5rem 0 0;
+    padding-top: 1.2rem;
+    border-top: 3px solid var(--cyan);
+  }
+  h2 {
+    font-size: 1.9rem;
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin: 0.3rem 0 1rem;
+  }
+  h3 { font-size: 1.2rem; font-weight: 700; margin: 0; }
+  p { margin: 0 0 1rem; }
+  ul, ol { padding-left: 1.2rem; margin: 0 0 1rem; }
+  li { margin-bottom: 0.35rem; }
+  code.inline {
+    font-family: var(--mono);
+    font-size: 0.88em;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 0.05em 0.35em;
+    overflow-wrap: anywhere;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 1.1rem 1.3rem 0.4rem;
+    margin: 1.25rem 0;
+  }
+
+  /* ---------- prompts ---------- */
+  .prompt { margin: 2rem 0; }
+  .prompt-head { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 0.7rem; flex-wrap: wrap; }
+  .num {
+    flex: none;
+    width: 2.4rem; height: 2.4rem;
+    border-radius: 50%;
+    background: var(--cyan);
+    color: var(--navy);
+    font-weight: 800;
+    display: grid; place-items: center;
+  }
+  .num.you { background: var(--gold); color: #FFFFFF; font-size: 0.8rem; }
+  @media (prefers-color-scheme: dark) { .num.you { color: var(--navy); } }
+  .step-meta { color: var(--ink-soft); font-size: 0.95rem; margin: 0.7rem 0 0; }
+  .codebox {
+    background: var(--code-bg);
+    border: 1px solid var(--code-rule);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 0.75rem 0;
+  }
+  .codebar {
+    display: flex; justify-content: flex-end;
+    padding: 0.45rem 0.6rem;
+    border-bottom: 1px solid var(--code-rule);
+  }
+  .copy {
+    font: 700 0.85rem var(--sans);
+    color: var(--navy);
+    background: var(--cyan);
+    border: 0;
+    border-radius: 4px;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+  }
+  .copy.done { background: #FFFFFF; }
+  pre {
+    margin: 0;
+    padding: 1.1rem 1.2rem 1.3rem;
+    color: var(--code-ink);
+    font: 400 0.92rem/1.6 var(--mono);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .note {
+    background: var(--surface);
+    border-left: 5px solid var(--cyan);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .note.warn { border-left-color: var(--gold); background: var(--gold-bg); }
+  .note strong { color: var(--ink); }
+  .note p:last-child { margin-bottom: 0; }
+  .note .codebox:last-child { margin-bottom: 0; }
+
+  .cta {
+    margin: 4rem 0 0;
+    padding: 2rem;
+    border-radius: 10px;
+    background: var(--navy);
+    color: #FFFFFF;
+    border-top: 6px solid var(--cyan);
+  }
+  .cta h2 { margin-top: 0; }
+  .cta p { color: #C9DCEA; }
+  .disclaimer { color: var(--ink-soft); font-size: 0.88rem; margin-top: 2.5rem; }
+
+  footer {
+    background: var(--navy-deep);
+    color: #C9DCEA;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+  }
+  footer a { color: var(--cyan); font-weight: 700; }
+  footer p { margin: 0 0 0.5rem; }
+
+  @media (max-width: 820px) {
+    .hero-inner { grid-template-columns: 1fr; padding-bottom: 2rem; }
+    .hero h1 { margin-top: 1.5rem; }
+    h2 { font-size: 1.6rem; }
+    .cta { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <a class="brand" href="../">Architects <span>and</span> AI</a>
+      <h1>Cantilever House Prompts: ConstructCraft + Bonsai</h1>
+      <p>Everything I used to have Claude Code build the same two-story house in two free Revit alternatives, ConstructCraft and Bonsai for Blender. Copy the brief, paste the prompts in order, and run the test yourself.</p>
+      <ul class="chips">
+        <li>Two stories</li>
+        <li>20 ft cantilever</li>
+        <li>Double-height living room</li>
+        <li>Courtyard + pool</li>
+        <li>15 rooms</li>
+      </ul>
+      <div class="jump">
+        <a class="btn btn-solid" href="#brief">Get the brief</a>
+        <a class="btn btn-line" href="#constructcraft">Go to the prompts</a>
+      </div>
+    </div>
+
+    <figure class="plan">
+      <svg viewBox="0 0 760 560" role="img" aria-label="Plan of the Cantilever House: an L-shaped ground floor with an upper bedroom wing that cantilevers 20 feet past the east end">
+        <defs>
+          <pattern id="stair" width="1" height="4" patternUnits="userSpaceOnUse"><rect width="1" height="4" fill="#ffc857"/><line x1="1" y1="0" x2="1" y2="4" stroke="#7a5a10" stroke-width="0.12"/></pattern>
+        </defs>
+        <g transform="translate(60,500) scale(8,-8)" stroke-linejoin="miter">
+          <rect x="24" y="24" width="36" height="34" fill="none" stroke="#a8bdd8" stroke-width="0.25" stroke-dasharray="1 1"/>
+          <rect x="48" y="26" width="8" height="30" rx="1" fill="rgba(80,150,255,0.35)" stroke="#78b4ff" stroke-width="0.3"/>
+          <path d="M0 0 H60 V24 H24 V58 H0 Z" fill="rgba(51,203,204,0.10)" stroke="#ffffff" stroke-width="0.5"/>
+          <line x1="0" y1="24" x2="24" y2="24" stroke="#a8bdd8" stroke-width="0.2"/>
+          <line x1="0" y1="36" x2="24" y2="36" stroke="#a8bdd8" stroke-width="0.2"/>
+          <rect x="0" y="0" width="20" height="24" fill="rgba(255,200,87,0.12)" stroke="#ffc857" stroke-width="0.3"/>
+          <rect x="21" y="19.2" width="15" height="4" fill="url(#stair)" stroke="#ffc857" stroke-width="0.2"/>
+          <rect x="20" y="0" width="60" height="24" fill="rgba(51,203,204,0.16)" stroke="#33CBCC" stroke-width="0.45"/>
+          <line x1="60" y1="0" x2="60" y2="24" stroke="#33CBCC" stroke-width="0.3" stroke-dasharray="1 0.8"/>
+        </g>
+        <g fill="#ffffff" text-anchor="middle">
+          <text x="156" y="128" font-size="15" font-weight="600">Two-car garage</text>
+          <text x="156" y="260" font-size="15" font-weight="600">Guest suite</text>
+          <text x="140" y="398" font-size="15" font-weight="600">Living</text>
+          <text x="140" y="418" font-size="12" fill="#ffc857">21 ft tall</text>
+          <text x="348" y="168" font-size="14" fill="#a8bdd8">Courtyard</text>
+          <text x="476" y="176" font-size="13">Pool</text>
+          <text x="292" y="362" font-size="12" fill="#ffc857" font-weight="600">Stair</text>
+          <text x="380" y="430" font-size="15" font-weight="600">Bedroom wing (upper)</text>
+          <text x="620" y="392" font-size="20" font-weight="700" fill="#33CBCC">20 ft</text>
+          <text x="620" y="414" font-size="13" font-weight="600" fill="#33CBCC">cantilever</text>
+          <text x="300" y="530" font-size="12" fill="#a8bdd8">60 ft ground floor</text>
+          <text x="620" y="530" font-size="12" fill="#a8bdd8">+ 20 ft overhang</text>
+        </g>
+        <g stroke="#a8bdd8" stroke-width="1">
+          <line x1="60" y1="514" x2="540" y2="514"/><line x1="540" y1="514" x2="700" y2="514" stroke="#33CBCC"/>
+          <line x1="60" y1="508" x2="60" y2="520"/><line x1="540" y1="508" x2="540" y2="520"/><line x1="700" y1="508" x2="700" y2="520"/>
+        </g>
+      </svg>
+      <figcaption>Plan drawn from the brief's coordinates. North is up. Origin (0,0) is the southwest corner.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<nav class="toc" aria-label="On this page">
+  <ul>
+    <li><a href="#brief">The brief</a></li>
+    <li><a href="#setup">Before you start</a></li>
+    <li><a href="#constructcraft">ConstructCraft prompts</a></li>
+    <li><a href="#bonsai">Bonsai prompts</a></li>
+    <li><a href="#tips">Tips</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <section id="brief">
+    <p class="kicker">Step 1</p>
+    <h2>The test brief</h2>
+    <p>Save this as <code class="inline">~/revit-alt-test/brief.txt</code>. Every prompt below tells Claude Code to read it. Writing it with coordinates is what let Claude place every exterior wall exactly.</p>
+    <div class="codebox">
+      <div class="codebar"><button class="copy" type="button">Copy</button></div>
+<pre>CANTILEVER HOUSE - TEST BRIEF
+Modern two-story house. Imperial units (feet).
+Origin is the southwest corner; +X is east, +Y is north.
+
+LEVELS
+- Ground at 0 ft
+- Upper at 11 ft
+
+GROUND FLOOR (L-shaped plan, 10" exterior walls)
+- Living wing: 60 ft x 24 ft, from (0,0) to (60,24).
+  The west 20 ft is a double-height living room with walls rising to 21 ft.
+  Other living wing walls are 11 ft tall.
+- Guest and garage wing: 24 ft x 34 ft, from (0,24) to (24,58). Walls 11 ft tall.
+- Ground floor slab under both wings.
+
+UPPER FLOOR (the cantilever)
+- Bedroom wing: 60 ft x 24 ft, from (20,0) to (80,24).
+  Sits on top of the living wing and cantilevers 20 ft past its east end,
+  with nothing underneath.
+- Floor slab at 11 ft; 10" exterior walls, 10 ft tall.
+
+COURTYARD
+- Open courtyard from (24,24) to (60,58), enclosed by the two ground-floor
+  wings and left open on the north and east sides.
+- Pool from (48,26) to (56,56).
+
+INTERIOR LAYOUT (5" interior walls, label every space)
+Ground, living wing, west to east:
+- Double-height living room (x 0-20)
+- Dining (x 20-36)
+- Kitchen (x 36-52)
+- Pantry and powder room (x 52-60)
+Ground, guest wing:
+- Guest suite with bath (y 24-36)
+- Two-car garage (y 36-58)
+Upper floor:
+- 6 ft corridor along the north side
+- South of it: bedroom 2 (x 20-32), bedroom 3 (x 32-44), shared bath (x 44-52),
+  primary bath (x 52-60), primary bedroom filling the cantilever (x 60-80)
+
+STAIR
+- Straight stair, 4 ft wide, against the north wall of the dining area
+  from x 21 to x 36, rising from Ground to Upper.</pre>
+    </div>
+    <div class="note warn"><p><strong>Heads up:</strong> this brief has a flaw that Claude caught in both tools. The 4 ft stair lands inside the 6 ft upper corridor, leaving only about 2 ft to walk past. Leave it in to see if your AI spots it too.</p></div>
+  </section>
+
+  <section id="setup">
+    <p class="kicker">Step 2</p>
+    <h2>Before you start</h2>
+    <p>I ran everything in the Linux terminal on a Chromebook. Any Linux, Mac or Windows machine with Claude Code works the same way.</p>
+    <div class="card">
+      <ol>
+        <li>Install <a href="https://code.claude.com/docs/en/setup">Claude Code</a> and sign in.</li>
+        <li>Make the folders: <code class="inline">mkdir -p ~/revit-alt-test/{constructcraft,bonsai,exports}</code></li>
+        <li>Download <a href="https://github.com/francisreboucas/constructcraft/releases">ConstructCraft</a> for your system and extract it into <code class="inline">~/revit-alt-test/constructcraft</code>.</li>
+        <li>Download <a href="https://www.blender.org/download/lts/">Blender 4.5 LTS</a>, then install <a href="https://extensions.blender.org/add-ons/bonsai/">Bonsai</a> from Edit &gt; Preferences &gt; Get Extensions.</li>
+        <li>Start Claude Code in the test folder: <code class="inline">cd ~/revit-alt-test &amp;&amp; claude</code></li>
+      </ol>
+    </div>
+    <p>The prompts use my file paths. If your ConstructCraft folder or Blender path is different, change those parts before you paste. Finish one tool completely before starting the other, and close the app before giving Claude each new prompt so you're not both editing the same file.</p>
+  </section>
+
+  <section id="constructcraft">
+    <p class="kicker">Step 3 · Tool 1</p>
+    <h2>ConstructCraft prompts</h2>
+    <p>ConstructCraft ships with a command-line tool called <code class="inline">ccad</code>, which Claude Code drives directly.</p>
+
+    <div class="prompt">
+      <div class="prompt-head"><span class="num">1</span><h3>Learn the tool</h3></div>
+      <div class="codebox">
+        <div class="codebar"><button class="copy" type="button">Copy</button></div>
+<pre>ConstructCraft's command-line tool is at ~/revit-alt-test/constructcraft/constructcraft-v0.12.0-x86_64-unknown-linux-gnu/ccad. Run "ccad commands" and "ccad schema" for the wall, door, window, floor, roof and room commands. Tell me in plain English what you can build with it. Don't build anything yet.</pre>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-head"><span class="num">2</span><h3>Levels and exterior walls</h3></div>
+      <div class="codebox">
+        <div class="codebar"><button class="copy" type="button">Copy</button></div>
+<pre>Read ~/revit-alt-test/brief.txt. Using ccad, create a new project at ~/revit-alt-test/constructcraft/house.ccad in imperial units. Add two levels: Ground at 0 ft and Upper at 11 ft. On Ground, build the 10" exterior walls for the L-shaped plan exactly as the brief describes, including the 21 ft walls around the double-height living room. Remember ccad's command line takes lengths in meters, so convert carefully. Save the project and list every wall with its length and height in feet.</pre>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-head"><span class="num">3</span><h3>Upper wing, interior walls, stair, doors and windows</h3></div>
+      <div class="codebox">
+        <div class="codebar"><button class="copy" type="button">Copy</button></div>
+<pre>In house.ccad, following brief.txt: build the upper bedroom wing on the Upper level from (20,0) to (80,24) with 10" exterior walls 10 ft tall, cantilevering 20 ft past the east end of the living wing. Then add the 5" interior walls on both floors exactly as the brief lays them out, and the 4 ft straight stair from Ground to Upper. The interior walls on the living room's north side (y = 24, x 0-20) and east side (x = 20) must also rise to 21 ft for the double-height space. Add doors: a front entry, a two-car garage door, a door from the garage into the house, large sliding glass doors from the kitchen to the courtyard (x 36 to 52), and a door into every room. Add windows: at least one in every bedroom and the guest suite, plus a large window at the east end of the cantilever. Doors and windows must be hosted in walls. Save and list everything you placed.</pre>
+      </div>
+      <p class="step-meta">In my run, Claude asked where the sliding doors should go because the stair sits on the dining room's courtyard wall. The prompt above already includes my answer: the kitchen wall.</p>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-head"><span class="num">4</span><h3>Floor slabs, roofs and pool</h3></div>
+      <div class="codebox">
+        <div class="codebar"><button class="copy" type="button">Copy</button></div>
+<pre>In house.ccad, following brief.txt: add a ground floor slab under both ground-floor wings and a floor slab at 11 ft under the whole upper wing, with an opening for the stair. Add flat roofs over the upper wing, the double-height living room and the guest/garage wing. Leave the courtyard open and add the pool from (48,26) to (56,56) if ccad can model it. Save and tell me what you made.</pre>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-head"><span class="num">5</span><h3>Rooms and area check</h3></div>
+      <div class="codebox">
+        <div class="codebar"><button class="copy" type="button">Copy</button></div>
+<pre>In house.ccad, place a room in every enclosed space on both floors and name each one exactly as brief.txt does (living room, dining, kitchen, pantry and powder room, guest suite, two-car garage, corridor, bedroom 2, bedroom 3, shared bath, primary bath, primary bedroom). Report each room's area in square feet, the total per floor, and the total for the house. Save.</pre>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-head"><span class="num">6</span><h3>Drawing sheet and PDF</h3></div>
+      <div class="codebox">
+        <div class="codebar"><button class="copy" type="button">Copy</button></div>
+<pre>In house.ccad, set up the drawings with ccad: make sure there is a floor plan view for Ground and for Upper, then create a south elevation (showing the cantilever) and one east-west section cut along the stair so it shows the double-height living room and the stair together. Add a few overall dimensions to the plans. Create one sheet (the largest size ccad offers, landscape) with a title block titled "Cantilever House", and place both plans, the elevation and the section on it at sensible scales without overlapping. Export the sheet to vector PDF at ~/revit-alt-test/exports/constructcraft-sheet.pdf. Save the project and tell me each view's name and scale. If a step isn't possible from the command line, tell me which one.</pre>
+      </div>
+      <p class="step-meta">ConstructCraft labels rooms automatically, and its sections are a single straight cut, which is why this asks for an east-west section.</p>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-head"><span class="num">7</span><h3>Schedules</h3></div>
+      <div class="codebox">
+        <div class="codebar"><button class="copy" type="button">Copy</button></div>
+<pre>In house.ccad, create a door schedule (type, width, height, count) and a room schedule (name, area, total area). Export both to CSV in ~/revit-alt-test/exports/ as constructcraft-doors.csv and constructcraft-rooms.csv. Save.</pre>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-head"><span class="num">8</span><h3>IFC export</h3></div>
+      <div class="codebox">
+        <div class="codebar"><button class="copy" type="button">Copy</button></div>
+<pre>Export house.ccad to IFC4 at ~/revit-alt-test/exports/constructcraft-house.ifc. Then count how many walls, doors, windows, slabs, roofs and spaces are in the IFC file and report the numbers.</pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="bonsai">
+    <p class="kicker">Step 4 · Tool 2</p>
+    <h2>Bonsai prompts</h2>
+    <p>Bonsai has no command-line tool, so Claude Code writes Python scripts and runs Blender in the background. Replace <code class="inline">~/apps/blender-4.5.16-linux-x64/blender</code> with the path to your Blender 4.5.</p>
+
+    <div class="prompt">
+      <div class="prompt-head"><span class="num">1</span><h3>Learn the tool</h3></div>
+      <div class="codebox">
+        <div class="codebar"><button class="copy" type="button">Copy</button></div>
+<pre>Blender 4.5 is at ~/apps/blender-4.5.16-linux-x64/blender and has the Bonsai add-on installed, which includes the ifcopenshell Python library. Write a small Python script and run it with "~/apps/blender-4.5.16-linux-x64/blender --background --python &lt;script&gt;" to confirm ifcopenshell imports and print its version. Then tell me in plain English how you'll build a BIM model as an IFC file. Don't build anything yet.</pre>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-head"><span class="num">2</span><h3>Levels and exterior walls</h3></div>
+      <div class="codebox">
+        <div class="codebar"><button class="copy" type="button">Copy</button></div>
+<pre>Read ~/revit-alt-test/brief.txt. Using Blender in background mode with ifcopenshell, create a new IFC4 project at ~/revit-alt-test/bonsai/house.ifc with imperial (feet) units. Add two building storeys: Ground at 0 ft and Upper at 11 ft. On Ground, build the 10" exterior walls for the L-shaped plan exactly as the brief describes, as real IfcWall elements joined at the corners, including the 21 ft walls around the double-height living room. Save the file and list every wall with its length and height in feet.</pre>
+      </div>
+      <p class="step-meta">Check where it saved. In my run, Claude saved to the exports folder and needed one nudge to move the file to <code class="inline">bonsai/house.ifc</code>.</p>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-head"><span class="num">3</span><h3>Upper wing, interior walls, stair, doors and windows</h3></div>
+      <div class="codebox">
+        <div class="codebar"><button class="copy" type="button">Copy</button></div>
+<pre>In ~/revit-alt-test/bonsai/house.ifc, following brief.txt: build the upper bedroom wing on the Upper level from (20,0) to (80,24) with 10" exterior walls 10 ft tall, cantilevering 20 ft past the east end of the living wing. Then add the 5" interior walls on both floors exactly as the brief lays them out, and the 4 ft straight stair from Ground to Upper. The interior walls on the living room's north side (y = 24, x 0-20) and east side (x = 20) must also rise to 21 ft for the double-height space. Add doors: a front entry, a two-car garage door, a door from the garage into the house, large sliding glass doors from the kitchen to the courtyard (x 36 to 52), and a door into every room. Add windows: at least one in every bedroom and the guest suite, plus a large window at the east end of the cantilever. Doors and windows must be IfcDoor and IfcWindow elements filling real openings in their walls. Save and list everything you placed.</pre>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-head"><span class="num">4</span><h3>Floor slabs, roofs and pool</h3></div>
+      <div class="codebox">
+        <div class="codebar"><button class="copy" type="button">Copy</button></div>
+<pre>In ~/revit-alt-test/bonsai/house.ifc, following brief.txt: add a ground floor slab under both ground-floor wings and a floor slab at 11 ft under the whole upper wing, with an opening for the stair. Add flat roofs over the upper wing, the double-height living room and the guest/garage wing. Leave the courtyard open and add the pool from (48,26) to (56,56) if it can be modeled. Slabs and roofs must be real IfcSlab and IfcRoof elements. Save and tell me what you made.</pre>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-head"><span class="num">5</span><h3>Rooms and area check</h3></div>
+      <div class="codebox">
+        <div class="codebar"><button class="copy" type="button">Copy</button></div>
+<pre>In ~/revit-alt-test/bonsai/house.ifc, place a room in every enclosed space on both floors and name each one exactly as brief.txt does (living room, dining, kitchen, pantry and powder room, guest suite, two-car garage, corridor, bedroom 2, bedroom 3, shared bath, primary bath, primary bedroom). Rooms should be IfcSpace elements with area quantities. Report each room's area in square feet, the total per floor, and the total for the house. Save.</pre>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-head"><span class="num">6</span><h3>Drawing sheet and PDF</h3></div>
+      <div class="codebox">
+        <div class="codebar"><button class="copy" type="button">Copy</button></div>
+<pre>Using Blender in background mode with the Bonsai add-on, load ~/revit-alt-test/bonsai/house.ifc and set up the drawings with Bonsai's own drawing tools: a floor plan for Ground and for Upper, a south elevation (showing the cantilever), and one east-west section cut along the stair so it shows the double-height living room and the stair together. Make sure each plan shows room names and a few overall dimensions. Create one sheet (the largest size available, landscape) with a title block titled "Cantilever House", and place both plans, the elevation and the section on it at sensible scales without overlapping. Bonsai makes drawings and sheets as SVG; convert the finished sheet to PDF at ~/revit-alt-test/exports/bonsai-sheet.pdf (install a converter such as rsvg-convert or Inkscape if needed, and tell me what you used). Save the IFC project and tell me each view's name and scale. If a step isn't possible from the command line, tell me which one.</pre>
+      </div>
+      <p class="step-meta">Bonsai's default drawing style leaves out door swing arcs. If you need them, ask Claude to turn them on.</p>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-head"><span class="num">7</span><h3>Schedules</h3></div>
+      <div class="codebox">
+        <div class="codebar"><button class="copy" type="button">Copy</button></div>
+<pre>From ~/revit-alt-test/bonsai/house.ifc, create a door schedule (type, width, height, count) and a room schedule (name, area, total area). Save them as CSV in ~/revit-alt-test/exports/ as bonsai-doors.csv and bonsai-rooms.csv.</pre>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-head"><span class="num">8</span><h3>IFC export</h3></div>
+      <div class="codebox">
+        <div class="codebar"><button class="copy" type="button">Copy</button></div>
+<pre>Copy ~/revit-alt-test/bonsai/house.ifc to ~/revit-alt-test/exports/bonsai-house.ifc. Then count how many walls, doors, windows, slabs, roofs and spaces are in it and report the numbers.</pre>
+      </div>
+    </div>
+
+    <div class="prompt">
+      <div class="prompt-head"><span class="num you">You</span><h3>Bonus: swap the files</h3></div>
+      <div class="card">
+        <ol>
+          <li>Open <code class="inline">exports/constructcraft-house.ifc</code> in Blender with Bonsai (File &gt; Open IFC Project).</li>
+          <li>Import <code class="inline">exports/bonsai-house.ifc</code> into ConstructCraft.</li>
+          <li>Click a wall, a door and the stair in each one to see what came across as real, editable elements. Then check the units.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="tips">
+    <p class="kicker">Save yourself some time</p>
+    <h2>Tips from the video</h2>
+    <div class="note warn"><p><strong>Tip 1: Write your brief with coordinates.</strong> Give every wing a start point and an end point, in feet or whatever units you use. That's why Claude put every exterior wall exactly where the brief said.</p></div>
+    <div class="note warn">
+      <p><strong>Tip 2: App opens but won't take clicks?</strong> On a Chromebook or any Linux setup, put <code class="inline">WAYLAND_DISPLAY=</code> with nothing after it in front of the launch command. It fixed both apps for me:</p>
+      <div class="codebox">
+        <div class="codebar"><button class="copy" type="button">Copy</button></div>
+<pre>WAYLAND_DISPLAY= ~/revit-alt-test/constructcraft/constructcraft-v0.12.0-x86_64-unknown-linux-gnu/constructcraft</pre>
+      </div>
+      <div class="codebox">
+        <div class="codebar"><button class="copy" type="button">Copy</button></div>
+<pre>WAYLAND_DISPLAY= ~/apps/blender-4.5.16-linux-x64/blender</pre>
+      </div>
+    </div>
+    <div class="note warn"><p><strong>Tip 3: Bonsai needs Blender 4.5, not Blender 5.</strong> If Bonsai won't install, that's almost always why.</p></div>
+    <div class="note warn"><p><strong>Tip 4: Check the units after an IFC swap.</strong> Both models were built in feet and both opened in metric in the other program. If you send IFC files to a consultant, ask them to check the units when they open it.</p></div>
+  </section>
+
+  <section class="cta" aria-labelledby="guide-heading">
+    <h2 id="guide-heading">Want the full workflow?</h2>
+    <p>"The Ultimate Guide for Architects Using AI" covers prompts, workflows and tools for every stage of a project, from briefs and floor plans to renders and client communication.</p>
+    <a class="btn btn-solid" href="../#buy">Get the guide</a>
+  </section>
+
+  <p class="disclaimer">This page is for educational purposes only. AI-generated models, drawings and schedules can contain errors and are not a substitute for review by a licensed professional or for meeting your local building codes. ConstructCraft and Bonsai are independent open-source projects; I'm not affiliated with them, Autodesk or Anthropic.</p>
+
+</main>
+
+<footer>
+  <p>From the <a href="https://www.youtube.com/@ArchitectsandAI">Architects and AI</a> YouTube channel.</p>
+  <p>More on using AI across the whole architecture workflow at <a href="../">architectsandai.com</a>.</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.closest('.codebox').querySelector('pre').textContent;
+      var done = function () {
+        btn.textContent = 'Copied';
+        btn.classList.add('done');
+        setTimeout(function () { btn.textContent = 'Copy'; btn.classList.remove('done'); }, 1800);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function () { fallback(text); done(); });
+      } else { fallback(text); done(); }
+    });
+  });
+  function fallback(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+</script>
+</body>
+</html>
